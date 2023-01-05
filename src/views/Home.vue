@@ -1,6 +1,7 @@
 <template>
     <div>
-        <h1 class="mb-3">Hola {{ userData.email }}</h1>
+        <h1 class="mb-3" v-if="userData.displayName">Hola {{ userData.displayName }}</h1>
+        <h1 class="mb-3" v-else>Hola {{ userData.email }}</h1>
 
         <add-form></add-form>
         

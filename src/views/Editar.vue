@@ -28,15 +28,6 @@
             >Editar</a-button>
         </a-form-item>
     </a-form>
-    <!-- <div>
-        <h1>Editar ID: {{route.params.id}}</h1>
-        <div>
-            <form @submit.prevent="handleSubmit">
-                <input type="text" placeholder="Ingrese url" v-model="url">
-                <button type="submit">Editar</button>
-            </form>
-        </div>
-    </div> -->
 </template>
 
 <script setup>

@@ -16,6 +16,9 @@
             <a-menu-item v-if="userStore.userData" key="home">
               <router-link to="/">Home</router-link>
             </a-menu-item>
+            <a-menu-item v-if="userStore.userData" key="profile">
+              <router-link to="/profile">Perfil</router-link>
+            </a-menu-item>
             <a-menu-item v-if="!userStore.userData" key="signup">
               <router-link to="/signup">SignUp</router-link>
             </a-menu-item>
