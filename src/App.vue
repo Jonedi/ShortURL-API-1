@@ -4,7 +4,7 @@
       <a-row>
         <a-col :span="12">
           <div class="logo">
-            <h1>App Base</h1>
+            <h1>ShortFriendly</h1>
           </div>
         </a-col>
         <a-col :span="12">
@@ -61,7 +61,7 @@ const route = useRoute();
 watch(
   () => route.name,
   () => { selectedKeys.value = [route.name] }
-)
+);
 
 </script>
 
