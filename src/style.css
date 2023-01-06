@@ -13,6 +13,12 @@
   display: flex;
   justify-content: space-around;
 }
+.center-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Margin horizontal */
 .mx-auto { margin: auto; }
 /* Margin Bottom */
