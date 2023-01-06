@@ -40,9 +40,9 @@ const formState = reactive({ url: ''})
 
 const onFinish = async () => {
     const res = await databaseStore.addUrl(formState.url)
-    formState.url = ''
-
+    
     if (!res) {
+        formState.url = ''
         message.success('URL agregada con éxito')
     }
     /* switch (res) {
@@ -53,7 +53,7 @@ const onFinish = async () => {
             message.error('Ocurrió un fallo en el servidor. Intente de nuevo o comuniquese con el administrador')
             break;
     } */
-}
+};
 
 
 </script>

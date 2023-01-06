@@ -1,61 +1,59 @@
 <template>
-    <div>
-        <a-row justify="center">
-            <a-col
-                :xs="{ span: 24 }"
-                :sm="{ span: 18, offset: 3 }"
-                :lg="{ span: 12, offset: 6 }"
+    <a-row justify="center">
+        <a-col
+            :xs="{ span: 24 }"
+            :sm="{ span: 18, offset: 3 }"
+            :lg="{ span: 12, offset: 6 }"
+        >
+        <h1 class="mb-3 text-center">Sign Up</h1>
+            <a-form
+                :model="formState"
+                @finish="onFinish"
+                @finishFailed="onFinishFailed"
+                name="login"
+                autocomplete="on"
+                layout="vertical"
             >
-            <h1 class="mb-3 text-center">Sign Up</h1>
-                <a-form
-                    :model="formState"
-                    @finish="onFinish"
-                    @finishFailed="onFinishFailed"
-                    name="login"
-                    autocomplete="on"
-                    layout="vertical"
+                <a-form-item
+                    name="email"
+                    :rules="[{ required: true, type:'email', message: 'Por favor ingrese un email!' }]"
                 >
-                    <a-form-item
-                        name="email"
-                        :rules="[{ required: true, type:'email', message: 'Por favor ingresa un email!' }]"
-                    >
-                        <a-input
-                            v-model:value="formState.email"
-                            placeholder="Digite su correo electrónico"
-                        />
-                    </a-form-item>
-                    <a-form-item
-                        name="password"
-                        :rules="[{ required: true, min: 6, message: 'Por favor ingresa una contraseña de mínimo 6 caracteres!' }]"
-                    >
-                        <a-input-password
-                            v-model:value="formState.password"
-                            placeholder="Digite su contraseña"
-                            
-                        />
-                    </a-form-item>
-                    <a-form-item
-                        name="rePassword"
-                        :rules="[{ validator: validatePass }]"
-                    >
-                        <a-input-password
-                            v-model:value="formState.rePassword"
-                            placeholder="Repita la contraseña"
-                            
-                        />
-                    </a-form-item>
-                    <a-form-item>
-                        <a-button 
-                            type="primary"
-                            html-type="submit"
-                            :disabled="useUserStore().loadingUser"
-                            :loading="useUserStore().loadingUser"
-                        >Iniciar Sesión</a-button>
-                    </a-form-item>
-                </a-form>
-            </a-col>
-        </a-row>
-    </div>
+                    <a-input
+                        v-model:value="formState.email"
+                        placeholder="Digite su correo electrónico"
+                    />
+                </a-form-item>
+                <a-form-item
+                    name="password"
+                    :rules="[{ required: true, min: 6, message: 'Por favor ingrese una contraseña de mínimo 6 caracteres!' }]"
+                >
+                    <a-input-password
+                        v-model:value="formState.password"
+                        placeholder="Digite su contraseña"
+                        
+                    />
+                </a-form-item>
+                <a-form-item
+                    name="rePassword"
+                    :rules="[{ validator: validatePass }]"
+                >
+                    <a-input-password
+                        v-model:value="formState.rePassword"
+                        placeholder="Repita la contraseña"
+                        
+                    />
+                </a-form-item>
+                <a-form-item>
+                    <a-button 
+                        type="primary"
+                        html-type="submit"
+                        :disabled="useUserStore().loadingUser"
+                        :loading="useUserStore().loadingUser"
+                    >Iniciar Sesión</a-button>
+                </a-form-item>
+            </a-form>
+        </a-col>
+    </a-row>
 </template>
 
 <script setup>
