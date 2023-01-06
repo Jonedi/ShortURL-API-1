@@ -1,4 +1,7 @@
-# Vue 3 + Vite
+# ShortUrl API
+Con esta app, el usuario puede registrarse, crear una sesión, editar su perfil y agregar las urls que desee. La app le dará una url corta para poderla compartirla en sus redes sociales, amigos o conocidos
+
+# Vue 3 + Vite + Firebase
 
 This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
