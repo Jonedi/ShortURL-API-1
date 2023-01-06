@@ -22,9 +22,10 @@
                         >
                             <a-button type="primary" shape="round" :loading="dbStore.loadingDoc">Eliminar</a-button>
                         </a-popconfirm>
+                        <a-button shape="round" @click="copiarUrl(item.id)">Copiar</a-button>
                     </a-space>
                 </template>
-                <p>{{ item.name }}</p>
+                <p class="text-wrap">{{ item.name }}</p>
             </a-card>
         </a-space>
         
@@ -55,6 +56,21 @@ const confirm = async (id) => {
         message.success('El elemento ha sido eliminado')
     }
     // message.error(res)
+}
+
+const copiarUrl = async (id) => {
+    if (!navigator.clipboard) {
+        return message.error("No se pudo copiar al portapapeles 💋");
+    }
+
+    const path = `${window.location.origin}/${id}`;
+    const err = await navigator.clipboard.writeText(path);
+
+    if (err) {
+        message.error("No se pudo copiar al portapapeles 💋");
+    } else {
+        message.success("Se copió con éxito 💋");
+    }
 }
 
 const cancel = () => {

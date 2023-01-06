@@ -33,7 +33,7 @@
                 </a-form-item>
                 <a-form-item
                     name="displayName"
-                    :rules="[{ message: 'Por favor ingrese un nick válido!' }]"
+                    :rules="[{ required:true, message: 'Por favor ingrese un nick válido!' }]"
                 >
                     <a-input
                         v-model:value="userData.displayName"

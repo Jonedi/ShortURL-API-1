@@ -33,17 +33,15 @@ export const useUserStore = defineStore('userStore', {
             this.loadingUser = true;
             try {
                 if (imagen) {
-                    const storageRef = ref( storage, `profiles/${this.userData.uid}` );
+                    const storageRef = ref( storage, `images/${this.userData.displayName}/profile/${this.userData.uid}` );
                     await uploadBytes(storageRef, imagen.originFileObj);
                     const photoURL = await getDownloadURL(storageRef);
-                    await updateProfile(auth.currentUser, {
-                        photoURL,
-                    });
+                    await updateProfile(auth.currentUser, { photoURL, });
                 }
-                await updateProfile(auth.currentUser, {
-                    displayName,
-                });
+                await updateProfile(auth.currentUser, { displayName, });
                 this.setUser(auth.currentUser);
+
+                location.reload()
             } catch (error) {
                 console.log(error);
                 return error.code;
@@ -84,8 +82,9 @@ export const useUserStore = defineStore('userStore', {
             const databaseStore = useDatabseStore()
             databaseStore.$reset()
             try {
-                router.push('/login')
                 await signOut(auth)
+                router.push('/login')
+                location.reload()
             } catch (e) {
                 return e.code
             } finally {
@@ -96,7 +95,14 @@ export const useUserStore = defineStore('userStore', {
             return new Promise((resolve, reject) => {
                 const unSuscribe = onAuthStateChanged(auth, async user => {
                     if (user) {
-                        await this.setUser(user)
+                        // await this.setUser(user)
+                        this.userData = {
+                            email: user.email,
+                            uid: user.uid,
+                            displayName: user.displayName,
+                            photoURL: user.photoURL,
+                        }
+                        console.log(this.userData);
                     } else {
                         this.userData = null
                         const databaseStore = useDatabseStore()

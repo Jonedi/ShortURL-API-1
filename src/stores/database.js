@@ -1,4 +1,4 @@
-import { query, collection, getDocs, where, addDoc, doc, deleteDoc, getDoc, updateDoc } from "firebase/firestore/lite";
+import { query, collection, getDocs, where, doc, deleteDoc, getDoc, updateDoc, setDoc } from "firebase/firestore/lite";
 import { defineStore } from "pinia";
 import { db, auth } from "../firebase";
 import { nanoid } from "nanoid";
@@ -11,6 +11,21 @@ export const useDatabseStore = defineStore('database', {
     }),
 
     actions: {
+        async getUrl(id) {
+            try {
+                const docRef = doc(db, 'urls', id)
+                const docSnap = await getDoc(docRef)
+
+                if (!docSnap.exists()) {
+                    return false
+                }
+
+                return docSnap.data().name
+            } catch (e) {
+                console.log(e);
+                return false
+            } finally {}
+        },
         async getUrls() {
             this.loadingDoc = true
             if (this.docs.length !== 0) return 
@@ -38,12 +53,12 @@ export const useDatabseStore = defineStore('database', {
                     short: nanoid(6),
                     user: auth.currentUser.uid
                 }
-                const docRef = await addDoc(collection(db, 'urls'), objDoc)
+                const docRef = await setDoc(doc(db, 'urls', objDoc.short), objDoc)
                 this.docs.push ({
                     ...objDoc,
                     id: docRef.id
                 })
-                console.log(objDoc);
+                // console.log(objDoc);
             } catch (e) {
                 console.log(e.code);
                 return e.code
